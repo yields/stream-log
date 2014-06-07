@@ -11,6 +11,8 @@ $ npm install stream-logger
 
 ### Example
 
+![](https://i.cloudup.com/5MIi_cpbL1.png)
+
 ```js
 
 var Logger = require('./');
