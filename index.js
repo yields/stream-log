@@ -58,6 +58,7 @@ Logger.prototype.type = function(type, color, fn){
     self.__log__(type, color, args);
     fn && fn();
   };
+  return this;
 };
 
 /**
