@@ -1,6 +1,6 @@
 {
   "name": "stream-log",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "dependencies": {
     "max-component": "^1.0.0"
   },
