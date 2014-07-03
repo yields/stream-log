@@ -73,7 +73,9 @@ Logger.prototype.type = function(type, color, fn){
 Logger.prototype.__log__ = function(type, color, args){
   if (!this.wrote) this.stream.write('\n');
   var pad = this.padleft(type);
-  var msg = fmt.apply(null, ['%s\033[%s%s\033[m : %s', pad, color, type].concat(args));
+  var msg = '%s\033[%s%s\033[m';
+  if (args.length > 0) msg += ' : %s';
+  msg = fmt.apply(null, [msg, pad, color, type].concat(args));
   this.stream.write(msg);
   return this;
 };
