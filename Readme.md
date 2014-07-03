@@ -6,7 +6,7 @@
 ### Installation
 
 ```bash
-$ npm install stream-logger
+$ npm install stream-log
 ```
 
 ### Example
