@@ -15,7 +15,7 @@ module.exports = Logger;
 
 /**
  * Initialize `Logger`
- * 
+ *
  * @param {Stream} stream
  * @api public
  */
@@ -28,19 +28,19 @@ function Logger(stream){
 
 /**
  * Add `type` with `color`.
- * 
+ *
  * Example:
- * 
+ *
  *    logger.type('log', '36m');
  *    logger.log('woot %d', 9);
- * 
+ *
  *    logger.type('error', '36m', function(){
  *      logger.end();
  *      process.exit(1);
  *    });
- * 
+ *
  *    logger.error('%s', err.stack);
- * 
+ *
  * @param {String} type
  * @param {String} color
  * @param {Function} fn
@@ -63,7 +63,7 @@ Logger.prototype.type = function(type, color, fn){
 
 /**
  * Log `type`, `color` with `args`.
- * 
+ *
  * @param {String} type
  * @param {String} color
  * @param {Function} fn
@@ -74,15 +74,16 @@ Logger.prototype.__log__ = function(type, color, args){
   if (!this.wrote) this.stream.write('\n');
   var pad = this.padleft(type);
   var msg = '%s\033[%s%s\033[m';
-  if (args.length > 0) msg += ' : %s';
-  msg = fmt.apply(null, [msg, pad, color, type].concat(args));
+  if (args.length) msg += ' : ';
+  msg = fmt(msg, pad, color, type);
+  if (args.length) msg += fmt.apply(null, args);
   this.stream.write(msg);
   return this;
 };
 
 /**
  * Pad `type` left.
- * 
+ *
  * @param {String} type
  * @return {String}
  * @api private
@@ -95,7 +96,7 @@ Logger.prototype.padleft = function(type){
 
 /**
  * End.
- * 
+ *
  * @api public
  */
 

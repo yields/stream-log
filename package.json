@@ -4,5 +4,9 @@
   "dependencies": {
     "max-component": "^1.0.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "better-assert": "^1.0.1",
+    "istanbul": "^0.3.2",
+    "mocha": "^1.21.4"
+  }
 }
