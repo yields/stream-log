@@ -17,13 +17,15 @@ module.exports = Logger;
  * Initialize `Logger`
  *
  * @param {Stream} stream
+ * @param {Number} indent
  * @api public
  */
 
-function Logger(stream){
-  if (!(this instanceof Logger)) return new Logger(stream);
+function Logger(stream, indent){
+  if (!(this instanceof Logger)) return new Logger(stream, indent);
   this.stream = stream;
   this.types = [];
+  this.indent = indent || 3;
 }
 
 /**
@@ -91,7 +93,7 @@ Logger.prototype.__log__ = function(type, color, args){
 
 Logger.prototype.padleft = function(type){
   var len = max(this.types, '.length');
-  return Array(4 + len - type.length).join(' ');
+  return Array(this.indent + 1 + len - type.length).join(' ');
 };
 
 /**
