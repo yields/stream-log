@@ -3,7 +3,7 @@
  * Module dependencies.
  */
 
-var max = require('max-component');
+var longest = require('longest');
 var fmt = require('util').format;
 var assert = require('assert');
 
@@ -92,7 +92,7 @@ Logger.prototype.__log__ = function(type, color, args){
  */
 
 Logger.prototype.padleft = function(type){
-  var len = max(this.types, '.length');
+  var len = longest(this.types).length;
   return Array(this.indent + 1 + len - type.length).join(' ');
 };
 
