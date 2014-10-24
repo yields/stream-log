@@ -7,7 +7,7 @@
     "test": "make test"
   },
   "dependencies": {
-    "max-component": "^1.0.0"
+    "longest": "^0.2.1"
   },
   "devDependencies": {
     "better-assert": "^1.0.1",
