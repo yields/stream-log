@@ -1,4 +1,9 @@
 
+0.2.2 / 2014-11-05
+==================
+
+  * index: Fix support for logger.wrote('...') [stephenmathieson]
+
 0.2.1 / 2014-10-24
 ==================
 
