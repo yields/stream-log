@@ -73,7 +73,10 @@ Logger.prototype.type = function(type, color, fn){
  */
 
 Logger.prototype.__log__ = function(type, color, args){
-  if (!this.wrote) this.stream.write('\n');
+  if (!this._wrote) {
+    this.stream.write('\n');
+    this._wrote = true;
+  }
   var pad = this.padleft(type);
   var msg = '%s\033[%s%s\033[m';
   if (args.length) msg += ' : ';
