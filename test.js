@@ -26,6 +26,12 @@ describe('Logger(stream)', function(){
       logger.foo('bar');
       assert('\n   \u001b[30mfoo\u001b[m : bar' == stream.data.join(''));
     });
+
+    it('should support #type("wrote")', function(){
+      logger.type('wrote');
+      logger.wrote('foo');
+      assert('\n   \u001b[30mwrote\u001b[m : foo' == stream.data.join(''));
+    })
   });
 
   describe('#type(name, color)', function(){
