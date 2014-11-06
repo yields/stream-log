@@ -82,7 +82,7 @@ Logger.prototype.__log__ = function(type, color, args){
   if (args.length) msg += ' : ';
   msg = fmt(msg, pad, color, type);
   if (args.length) msg += fmt.apply(null, args);
-  this.stream.write(msg);
+  this.stream.write(msg + '\n');
   return this;
 };
 
