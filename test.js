@@ -24,14 +24,27 @@ describe('Logger(stream)', function(){
     it('should default to 30m', function(){
       logger.type('foo');
       logger.foo('bar');
-      assert('\n   \u001b[30mfoo\u001b[m : bar' == stream.data.join(''));
+      assert('\n   \u001b[30mfoo\u001b[m : bar\n' == stream.data.join(''));
     });
 
     it('should support #type("wrote")', function(){
       logger.type('wrote');
       logger.wrote('foo');
-      assert('\n   \u001b[30mwrote\u001b[m : foo' == stream.data.join(''));
+      assert('\n   \u001b[30mwrote\u001b[m : foo\n' == stream.data.join(''));
     })
+
+    it('should add a trailing newline', function(){
+      logger.type('foo');
+      logger.foo('bar');
+      logger.foo('qux');
+      var expected = [
+        '',
+        '   \u001b[30mfoo\u001b[m : bar',
+        '   \u001b[30mfoo\u001b[m : qux',
+        ''
+      ].join('\n');
+      assert(expected == stream.data.join(''));
+    });
   });
 
   describe('#type(name, color)', function(){
@@ -51,14 +64,14 @@ describe('Logger(stream)', function(){
       logger.type('foo', '36m');
       logger.foo('bar');
       var str = stream.data.join('').toString();
-      assert('\n   \u001b[36mfoo\u001b[m : bar' == str);
+      assert('\n   \u001b[36mfoo\u001b[m : bar\n' == str);
     });
 
     it('should format variadic arguments', function(){
       logger.type('foo', '36m');
       logger.foo('bar %s', 'baz');
       var str = stream.data.join('').toString();
-      assert('\n   \u001b[36mfoo\u001b[m : bar baz' == str);
+      assert('\n   \u001b[36mfoo\u001b[m : bar baz\n' == str);
     });
   });
 
